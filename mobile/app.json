@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "SnapShop",
+    "slug": "snapshop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "snapshop",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.snapshop.app"
+    },
+    "android": {
+      "package": "com.snapshop.app",
+      "permissions": ["CAMERA", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "SnapShop uses your camera to photograph the item you want to buy.",
+          "photosPermission": "SnapShop lets you pick a photo of the item you want to buy."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "SnapShop uses your location to find stores near you that sell the item."
+        }
+      ]
+    ]
+  }
+}

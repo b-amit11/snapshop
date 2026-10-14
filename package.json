@@ -1,0 +1,14 @@
+{
+  "name": "snapshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Snap a photo of anything and find the best place to buy it, online or nearby.",
+  "scripts": {
+    "setup": "npm --prefix server install",
+    "dev": "npm --prefix server run dev",
+    "start": "npm --prefix server run build && npm --prefix server start",
+    "test": "npm --prefix server test",
+    "mobile": "npm --prefix mobile start"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>SnapShop</title>
+    <meta name="description" content="Snap a photo of anything and find the best place to buy it, online or nearby." />
+    <meta name="theme-color" content="#0f766e" />
+    <!-- Where the API lives. Empty = same server that serves this page. -->
+    <meta name="snapshop-api" content="" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <img src="icon.svg" alt="" width="28" height="28" />
+        <span>SnapShop</span>
+      </div>
+      <p class="tagline">Snap it. Find it. Buy it.</p>
+    </header>
+
+    <main>
+      <section class="card" id="capture">
+        <div class="photo-zone" id="photoZone">
+          <img id="preview" alt="Your photo" hidden />
+          <div class="photo-empty" id="photoEmpty">
+            <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+              <path fill="currentColor" d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+            </svg>
+            <p>Take a photo of what you want to buy</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="btn btn-primary grow" for="cameraInput">Take photo</label>
+          <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden />
+          <label class="btn grow" for="galleryInput">Upload</label>
+          <input id="galleryInput" type="file" accept="image/*" hidden />
+        </div>
+
+        <label class="field">
+          <span>Anything to add? <em>(optional)</em></span>
+          <input id="hint" type="text" maxlength="200" placeholder="e.g. size 10, for a 2018 Honda CR-V" />
+        </label>
+
+        <div class="row location-row">
+          <button type="button" class="btn btn-ghost" id="locBtn">Use my location</button>
+          <span class="muted" id="locStatus">Off: online results only</span>
+        </div>
+
+        <fieldset class="segmented" id="prefer">
+          <legend>What matters most?</legend>
+          <label><input type="radio" name="prefer" value="balanced" checked /><span>Best overall</span></label>
+          <label><input type="radio" name="prefer" value="cheapest" /><span>Cheapest</span></label>
+          <label><input type="radio" name="prefer" value="fastest" /><span>Get it fast</span></label>
+        </fieldset>
+
+        <button type="button" class="btn btn-primary btn-big" id="findBtn" disabled>Find where to buy</button>
+        <p class="error" id="error" role="alert" hidden></p>
+      </section>
+
+      <section id="loading" class="card loading" hidden aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <p id="loadingText">Looking at your photo…</p>
+      </section>
+
+      <section id="results" hidden>
+        <div class="banner" id="demoBanner" hidden>
+          Demo data: add API keys on the server to see real prices and stores.
+        </div>
+
+        <article class="card item" id="itemCard">
+          <div class="item-head">
+            <div>
+              <p class="eyebrow">We think this is</p>
+              <h2 id="itemName"></h2>
+            </div>
+            <span class="pill" id="itemConfidence"></span>
+          </div>
+          <div class="chips" id="itemAttrs"></div>
+          <p class="note" id="itemNotes" hidden></p>
+          <form class="refine" id="refineForm">
+            <label for="queryInput" class="muted">Not quite right? Edit the search:</label>
+            <div class="row">
+              <input id="queryInput" type="text" maxlength="200" class="grow" />
+              <button class="btn" type="submit">Search</button>
+            </div>
+          </form>
+        </article>
+
+        <h3 class="section-title">Best options</h3>
+        <ol class="offers" id="offers"></ol>
+        <p class="muted empty" id="noOffers" hidden>No priced results found. Try editing the search or check the stores below.</p>
+
+        <h3 class="section-title">More places to check</h3>
+        <div class="links" id="moreOptions"></div>
+
+        <details class="sources">
+          <summary>Where these results came from</summary>
+          <ul id="providerList"></ul>
+        </details>
+
+        <button type="button" class="btn btn-big" id="againBtn">Snap something else</button>
+      </section>
+    </main>
+
+    <footer class="foot muted">Prices and stock can change. Check with the seller before you go.</footer>
+
+    <template id="offerTpl">
+      <li class="offer">
+        <img class="thumb" alt="" loading="lazy" />
+        <div class="offer-body">
+          <div class="badges"></div>
+          <p class="offer-title"></p>
+          <p class="offer-seller"></p>
+          <p class="offer-meta"></p>
+          <div class="row actions"></div>
+        </div>
+        <div class="price"></div>
+      </li>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

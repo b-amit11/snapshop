@@ -1,10 +1,14 @@
 # SnapShop
 
+[![CI](https://github.com/b-amit11/snapshop/actions/workflows/ci.yml/badge.svg)](https://github.com/b-amit11/snapshop/actions/workflows/ci.yml)
+
 **Snap a photo of anything. SnapShop finds the best place to buy it.**
 
 Take a picture of a tire, a shoelace, a nail, anything. SnapShop works out what it is, then checks
 online stores (Amazon, Walmart, Target, eBay…) and stores near you (Walmart, Harris Teeter,
 local shops…) and ranks the options by price, how fast you can get it, and whether it's in stock.
+
+**Stack:** TypeScript · Node.js (zero runtime dependencies) · Claude vision API · React Native / Expo · Google Places & Shopping APIs · Kroger API · Docker · GitHub Actions
 
 It comes as:
 
@@ -34,7 +38,7 @@ It comes as:
 Requires **Node.js 22+**.
 
 ```bash
-git clone https://github.com/<you>/snapshop.git
+git clone https://github.com/b-amit11/snapshop.git
 cd snapshop
 npm run setup        # installs server dev tools
 npm run dev          # http://localhost:8787
